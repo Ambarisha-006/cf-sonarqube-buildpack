@@ -22,7 +22,7 @@ echo "-----> Starting SonarQube"
 echo "print debug logs"
 ls -larth /etc/sysctl.d
 echo "print sysctl"
-cat /etc/sysctl.conf
+
 echo "-----adding values------"
 echo "vm.max_map_count=524288" >> /etc/sysctl.conf
 echo "fs.file-max=131072" >> /etc/sysctl.conf
