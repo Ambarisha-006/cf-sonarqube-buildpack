@@ -24,9 +24,12 @@ ls -larth /etc/sysctl.d
 echo "print sysctl"
 
 echo "-----adding values------"
-echo "vm.max_map_count=524288" >> /etc/sysctl.conf
-echo "fs.file-max=131072" >> /etc/sysctl.conf
+echo "vm.max_map_count=524288" >> /etc/sysctl.conf2
+echo "fs.file-max=131072" >> /etc/sysctl.conf2
+mv /etc/sysctl.conf2 /etc/sysctl.conf
+echo "-----print file-max------"
 cat /etc/sysctl.conf|grep -v 'fs.file-max' 
+echo "-----end of print file-max------"
 
 sysctl --system
 sysctl -w vm.max_map_count=524288
