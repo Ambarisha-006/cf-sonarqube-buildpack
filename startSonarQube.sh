@@ -19,10 +19,13 @@ echo "-----> Starting SonarQube"
 
 /home/vcap/app/sonarqube/bin/linux-x86-64/sonar.sh start
 
-echo "print custom"
+echo "print debug logs"
 ls -larth /etc/sysctl.d
+echo "print sysctl"
+sysctl --system
 sysctl -w vm.max_map_count=524288
 sysctl -w fs.file-max=131072
+echo "print ulimit"
 ulimit -n 131072
 ulimit -u 8192
 
