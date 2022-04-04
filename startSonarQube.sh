@@ -1,7 +1,8 @@
 #!/bin/sh
 
-echo "-----> Making java available1"
+echo "-----> Making java available 1"
 export PATH=$PATH:/home/vcap/app/.java/bin
+echo "-----> installing systemd"
 sudo apt-get update -y
 sudo apt-get install -y systemd
 
@@ -27,19 +28,19 @@ ls -larth /etc/sysctl.d
 echo "print sysctl"
 
 echo "-----adding values------"
-echo "vm.max_map_count=524288" >> /etc/sysctl.conf2
-echo "fs.file-max=131072" >> /etc/sysctl.conf2
-mv /etc/sysctl.conf2 /etc/sysctl.conf
+sudo echo "vm.max_map_count=524288" >> /etc/sysctl.conf2
+sudo echo "fs.file-max=131072" >> /etc/sysctl.conf2
+sudo mv /etc/sysctl.conf2 /etc/sysctl.conf
 echo "-----print file-max------"
 cat /etc/sysctl.conf|grep -v 'fs.file-max' 
 echo "-----end of print file-max------"
 
-sysctl --system
-sysctl -w vm.max_map_count=524288
-sysctl -w fs.file-max=131072
+sudo sysctl --system
+sudo sysctl -w vm.max_map_count=524288
+sudo sysctl -w fs.file-max=131072
 echo "print ulimit"
-ulimit -n 131072
-ulimit -u 8192
+sudo ulimit -n 131072
+sudo ulimit -u 8192
 
 echo "-----> Tailing log"
 sleep 10 # give it a bit of time to create files
