@@ -1,9 +1,9 @@
 #!/bin/sh
 
-echo "-----> Making java available"
+echo "-----> Making java available1"
 export PATH=$PATH:/home/vcap/app/.java/bin
-apt-get update -y
-apt-get install -y systemd
+sudo apt-get update -y
+sudo apt-get install -y systemd
 
 echo "-----> Setting sonar.properties"
 echo "       sonar.web.port=${PORT}"
