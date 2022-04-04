@@ -2,6 +2,8 @@
 
 echo "-----> Making java available"
 export PATH=$PATH:/home/vcap/app/.java/bin
+apt-get update -y
+apt-get install -y systemd
 
 echo "-----> Setting sonar.properties"
 echo "       sonar.web.port=${PORT}"
@@ -18,6 +20,7 @@ echo "------------------------------------------------------" > /home/vcap/app/s
 echo "-----> Starting SonarQube"
 
 /home/vcap/app/sonarqube/bin/linux-x86-64/sonar.sh start
+
 
 echo "print debug logs"
 ls -larth /etc/sysctl.d
