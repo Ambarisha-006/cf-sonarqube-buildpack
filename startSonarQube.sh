@@ -1,10 +1,7 @@
 #!/bin/sh
 
-echo "-----> Making java available 1"
+echo "-----> Making java available"
 export PATH=$PATH:/home/vcap/app/.java/bin
-echo "-----> installing systemd"
-sudo apt-get update -y
-sudo apt-get install -y systemd
 
 echo "-----> Setting sonar.properties"
 echo "       sonar.web.port=${PORT}"
@@ -23,24 +20,24 @@ echo "-----> Starting SonarQube"
 /home/vcap/app/sonarqube/bin/linux-x86-64/sonar.sh start
 
 
-echo "print debug logs"
-ls -larth /etc/sysctl.d
-echo "print sysctl"
+#echo "print debug logs"
+#ls -larth /etc/sysctl.d
+#echo "print sysctl"
 
-echo "-----adding values------"
-sudo echo "vm.max_map_count=524288" >> /etc/sysctl.conf2
-sudo echo "fs.file-max=131072" >> /etc/sysctl.conf2
-sudo mv /etc/sysctl.conf2 /etc/sysctl.conf
-echo "-----print file-max------"
-cat /etc/sysctl.conf|grep -v 'fs.file-max' 
-echo "-----end of print file-max------"
+#echo "-----adding values------"
+#sudo echo "vm.max_map_count=524288" >> /etc/sysctl.conf2
+#sudo echo "fs.file-max=131072" >> /etc/sysctl.conf2
+#sudo mv /etc/sysctl.conf2 /etc/sysctl.conf
+#echo "-----print file-max------"
+#cat /etc/sysctl.conf|grep -v 'fs.file-max' 
+#echo "-----end of print file-max------"
 
-sudo sysctl --system
-sudo sysctl -w vm.max_map_count=524288
-sudo sysctl -w fs.file-max=131072
-echo "print ulimit"
-sudo ulimit -n 131072
-sudo ulimit -u 8192
+#sudo sysctl --system
+#sudo sysctl -w vm.max_map_count=524288
+#sudo sysctl -w fs.file-max=131072
+#echo "print ulimit"
+#sudo ulimit -n 131072
+#sudo ulimit -u 8192
 
 echo "-----> Tailing log"
 sleep 10 # give it a bit of time to create files
