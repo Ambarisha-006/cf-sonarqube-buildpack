@@ -7,6 +7,8 @@ echo "-----> Setting sonar.properties"
 echo "       sonar.web.port=${PORT}"
 echo "\n ------- The following properties were automatically created by the buildpack -----\n" >> ./sonar.properties
 echo "sonar.web.port=${PORT}\n" >> ./sonar.properties
+echo "sonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false\n" >> ./sonar.properties
+echo "SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true\n" >> ./sonar.properties
 
 # Replace all environment variables with syntax ${MY_ENV_VAR} with the value
 # thanks to https://stackoverflow.com/questions/5274343/replacing-environment-variables-in-a-properties-file
